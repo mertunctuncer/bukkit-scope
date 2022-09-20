@@ -1,27 +1,21 @@
 package dev.peopo.bukkitscope.dispatcher
 
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Runnable
-import kotlinx.coroutines.isActive
 import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
 
-import kotlin.coroutines.CoroutineContext
+interface BukkitDispatcher {
 
-private val bukkitScheduler
-	get() = Bukkit.getScheduler()
+	val plugin : Plugin
 
-class BukkitDispatcher(private val plugin: Plugin) : CoroutineDispatcher(){
+	fun runTask(block: Runnable) = Bukkit.getScheduler().runTask(plugin, block)
 
-	override fun dispatch(context: CoroutineContext, block: Runnable) {
-		if (!context.isActive) return
-		if (Bukkit.isPrimaryThread()) block.run()
-		else bukkitScheduler.callSyncMethod(plugin) { block.run() }
-	}
+	fun runTaskAsync(block: Runnable) = Bukkit.getScheduler().runTaskAsynchronously(plugin, block)
 
-	override fun toString(): String {
-		return super.toString()
-	}
+	fun runTaskLater(ticks: Long, block: Runnable) = Bukkit.getScheduler().runTaskLater(plugin, block, ticks)
+
+	fun runTaskLaterAsync(ticks: Long, block: Runnable) = Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, block, ticks)
+
+	fun runTaskTimer(delay: Long, interval: Long, block: Runnable) = Bukkit.getScheduler().runTaskTimer(plugin, block, delay, interval)
+
+	fun runTaskTimerAsync(delay: Long, interval: Long, block: Runnable) = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, block, delay, interval)
 }
-
-
