@@ -21,6 +21,7 @@ repositories {
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT")
 
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.+")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.+")
 }
 
