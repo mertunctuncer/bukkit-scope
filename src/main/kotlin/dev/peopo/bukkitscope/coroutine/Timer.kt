@@ -4,7 +4,10 @@ import dev.peopo.bukkitscope.dispatcher.AsyncDispatcher
 import dev.peopo.bukkitscope.dispatcher.BukkitDispatcher
 import dev.peopo.bukkitscope.dispatcher.ServerDispatcher
 import dev.peopo.bukkitscope.exception.IllegalDispatcherException
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import org.bukkit.plugin.Plugin
 import kotlin.coroutines.CoroutineContext
 

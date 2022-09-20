@@ -1,9 +1,10 @@
 package dev.peopo.bukkitscope.dispatcher
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Runnable
+import kotlinx.coroutines.isActive
 import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
-
 import kotlin.coroutines.CoroutineContext
 
 
